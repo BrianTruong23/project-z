@@ -1,276 +1,279 @@
-<script >
-import Navbar from './components/NavBar.vue';
+<script>
 import './assets/base.css';
 
 export default {
-  name: 'App',
-  components: {
-    Navbar
+  data() {
+    return {
+      log_in: true
+    };
+  },
+  
+  computed: {
+    hideSignUpButton() {
+      // Check if the current route path is '/sign-up'
+      return this.$route.path !== '/signup';
+    },
+    showHome() {
+      // Check if the current route path is '/sign-up'
+      return this.$route.path == '/signup';
+    },
+    showLogIn(){
+      console.log(this.log_in );
+      return this.log_in
+
+    }
+  }, 
+  methods: {
+    setRegister() {
+      this.log_in = false ;
+    },
+    setLogIn() {
+      this.log_in = true;
+    },
+
   }
 };
 
 </script>
 
+
 <template>
+    
+<nav class="navbar navbar-expand-lg navbar-light justify-content-between">
+  <a class="navbar-brand" href="#"><h2>Project Z</h2></a>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
-
-
-<Navbar />
-
-
-<div class = 'big-project-title'>
-  <h3>Looking for a project to join?</h3>
-  <h5>We got you!</h5>
-
-</div>
-
-<section class = 'ad-bg mt-4'>
-
-  <div class = 'project-container'>
-    <img src="./assets/pin.png" alt="">
-    <h4>Coding Project</h4>
-    <hr>
-    <p>Build an app for healtcare system</p>
-  </div>
+  <div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
  
-  <div class = 'project-container'>
-    <img src="./assets/pin.png" alt="">
-    <h4>Coding Project</h4>
-    <hr>
-    <p>Build an app for healtcare system</p>
-  </div>
+      <li class="nav-item active">
 
-  <div class = 'project-container'>
-    <img src="./assets/pin.png" alt="">
-    <h4>Coding Project</h4>
-    <hr>
-    <p>Build an app for healtcare system</p>
+      
+        <button type="button" class="btn auth-button auth-button-log p-3 " @click = 'setLogIn' data-toggle="modal" data-target="#LogInModal" > Log In</button></li>
+      <li class="nav-item">
+        <button type="button" class="btn auth-button auth-button-sign p-3 " data-toggle="modal" data-target="#SignUpModal"> Sign Up</button>
+      </li>
+
+    </ul>
   </div>
-  <div class = 'project-container'>
-    <img src="./assets/pin.png" alt="">
-    <h4>Coding Project</h4>
-    <hr>
-    <p>Build an app for healtcare system</p>
   </div>
 
 
-</section>
 
-<div class = 'project search-project' >
-  <div class="container">
-  <div class="row vertical-center">
-    <div class="col-sm">
-      <h1>Search for a project</h1>
-      <h4 class = 'mt-2'>What do you want to be a part of?</h4>
-      <button class = 'btn explore-btn mt-4 px-4 py-2'><h5>Explore</h5></button>
-    </div>
-    <div class="col-sm">
-      <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
- 
-    </div>
-  </div>
-</div>
-
-
-
-</div>
-
-<div class = 'project message-project'>
-  <div class="container">
-    <div class="row vertical-center">
-      <div class="col-sm">
-        <h1>Message</h1>
-        <h4 class = 'mt-3'>Connect with the project creator and offer your help.</h4>
+<!-- Modal -->
+<div class="modal fade  bd-example-modal-lg" id="LogInModal" tabindex="-1" role="dialog" aria-labelledby="LogInModal" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="LogInModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="col-sm">
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+      <div class="modal-body p-4">
+
+        <div class = 'text-center'>  
+          <h2 >Welcome to Project Z</h2>
+          <h5>Ready to embark on exciting journey of projects!</h5>
+        </div>
+
+        <form class = 'mt-3' v-if ='showLogIn'>
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example1">Email address</label>
+              <input type="email" id="form2Example1" class="form-control" />
+    
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example2">Password</label>
+              <input type="password" id="form2Example2" class="form-control" />
+
+            </div>
+
+            <!-- 2 column grid layout for inline styling -->
+            <div class="row mb-4">
+              <div class="col d-flex justify-content-center ">
+                <!-- Checkbox -->
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
+                  <label class="form-check-label" for="form2Example31"> Remember me </label> <span class="pull-right"></span>
+                </div>
+              </div>
+
+              <div class="col">
+                <!-- Simple link -->
+                <div class="pull-right">
+                  <button class = 'btn btn-default btn-small'>Forgot Password</button>
+                </div>
   
-      </div>
-    </div>
-  </div>
+              </div>
+            </div>
 
-</div>
-<div class = 'project embark-project'>
-  <div class="container">
-    <div class="row vertical-center">
-      <div class="col-md-6">
-        <h1>Embark on the new journey</h1>
-        <h4 class = 'mt-3'>Join with them and together build something that matters.</h4>
+            <!-- Submit button -->
+            <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+
+            <!-- Register buttons -->
+            <div class="text-center">
+              <p>Not a member?  
+              
+                <button class = 'btn btn-default btn-small ' @click = 'setRegister'><a href="">Register</a></button></p>
+              <p>or sign up with:</p>
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <i class="fab fa-facebook-f"></i>
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <i class="fab fa-google"></i>
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <i class="fab fa-twitter"></i>
+              </button>
+
+              <button type="button" class="btn btn-link btn-floating mx-1">
+                <i class="fab fa-github"></i>
+              </button>
+            </div>
+      </form>
+
+
+
+  <!-- REGISTER input -->
+      <form class = 'mt-3' v-if ='!showLogIn'>
+             <!-- Name input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="registerName">Name</label>
+        <input type="text" id="registerName" class="form-control" />
+
       </div>
-      <div class="col-md-6">
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+
+      <!-- Username input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="registerUsername">Username</label>
+        <input type="text" id="registerUsername" class="form-control" />
+       
+      </div>
+
+      <!-- Email input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="registerEmail">Email</label>
+        <input type="email" id="registerEmail" class="form-control" />
+
+      </div>
+
+      <!-- Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="registerPassword">Password</label>
+        <input type="password" id="registerPassword" class="form-control" />
+      
+      </div>
+
+      <!-- Repeat Password input -->
+      <div class="form-outline mb-4">
+        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+        <input type="password" id="registerRepeatPassword" class="form-control" />
+
+      </div>
+
+
+            <!-- Submit button -->
+      <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
+      <div class = 'text-center'>
+      <p>or sign up with:</p>
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-facebook-f"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-google"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-twitter"></i>
+            </button>
+
+            <button type="button" class="btn btn-link btn-floating mx-1">
+              <i class="fab fa-github"></i>
+            </button>
+      </div>
   
+
+      </form>
+      
       </div>
+   
     </div>
   </div>
-
-
-
 </div>
 
-<section id = 'footer'> 
+</nav>
 
-  <div class = 'icon-footer'>
-    <h4>Project Z</h4>
-  </div>
-  <div class = 'contact'>
-    <h4>Contact Us</h4>
-    <h5>johndoe@gmail.com</h5>
-  </div>
-  <div class="social">
-    <h4>Get social</h4>
-    <div class = 'social-media-icons'>
-      <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
-      <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
-      <i class="fab fa-instagram"></i> <!-- Instagram Icon -->
-    </div>
+<router-view/>
 
-  </div>
-
-</section>
-
-  
-</template>   
+</template>
 
 <style>
 
-.vertical-center {
-  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-  min-height: 100vh; /* These two lines are counted as one :-)       */
 
-  display: flex;
-  align-items: center;
+
+.navbar{
+    padding: 20px 25px 30px;
 }
 
-.container{
-  margin-left: 0;
-  margin-right: 0;
-  padding: 0;
-}
+.auth-button{
+  padding: 5px 10px 5px;
+  border-radius: 5px;
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer;
+  text-decoration: none;
 
-.project{
-  padding: 0 100px 0;
-  min-height: 100vh;
-
-}
-
-section{
-
-
-  padding: 20px 25px 30px;
-
-}
-
-.ad-bg {
-  background-image: url('./assets/bg.png'); /* Replace 'your-image-url.jpg' with the path to your background image */
-  background-size: cover; /* Adjust the background size as needed */
-  background-position: center center; /* Center the background image horizontally and vertically */
-  padding: 100px 25px 100px;
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-
-}
-.project-container{
-  min-height: 200px;
-  padding: 0 20px 20px;
-  flex: 1 1 0;
-  border-radius: 10px;
-  border: 1px solid #000;
-  background: #FFF;
-
-}
-
-.project-container hr {
-  width: 50%; /* Set the width as needed */
-  margin-top: -3px;
-  height: 5px; /* Adjust the height as needed */
-  background-color:#E9B824;
-  border: none;
-  opacity: 1;
-  margin: 0;
-}
-
-.project-container img{
-  width: 20%; /* Adjust the width to make the image smaller */
-  height: auto; /* Maintain the aspect ratio */
-  margin-top: -25px;
-
-}
-
-
-.big-project-title{
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  text-align: center;
   
 }
 
-.big-project-title h1:first-of-type {
-  margin-bottom: -15px; /* Adjust the margin to make them closer */
-}
-
-
-.icon{
-
-  font-size: 35px;
-
-}
-
-
-.search-project{
-
-  background-color: #F4EEEE;
-
-}
-
-.explore-btn{
-  background-color: var(--dark-blue);
+.auth-button-log{
+  background: var(--dark-blue);
   color: white;
 }
 
-.message-project{
-  background-color: #E7E6F7;
+.auth-button-log:hover{
+  background-color: var(--light-blue);
+  color: white;
+  text-decoration: none;
+
+
+}
+.auth-button-sign{
+    color: black;
 
 }
 
-.embark-project{
-  background-color: #F7E7E6;
-
-}
-
-#footer{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: #C6D2ED;
-}
-
-#footer .social{
-  display: flex;
-  flex-direction: column;
-}
-
-.social-media-icons{
-  display: flex;
-  gap: 10px;
-}
-
-.social-media-icons i{
-  flex: 1 1 0;
-  height: auto;
-  width: 12px;
-  color: black;
+.auth-button-sign:hover{
+    background-color: var(--light-blue) ;
+    color: white;
+    text-decoration: none;
 }
 
 
+@media screen and (max-width: 990px) {
 
+    .auth-button{
+        margin-top: 20px;
+    }
+
+    .auth-button-sign{
+        border: 1px solid black; 
+        color: black;
+    }
+
+}
 
 
 </style>
+
+

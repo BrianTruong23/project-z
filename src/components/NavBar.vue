@@ -1,5 +1,15 @@
 <script>
-import '../assets/base.css'
+import '../assets/base.css';
+
+export default {
+  methods: {
+    directSignUp() {
+      console.log('Tjang');
+      this.$router.push({ name: 'SignUp' });
+    },
+  },
+};
+
 </script>
 
 
@@ -18,14 +28,19 @@ import '../assets/base.css'
     <ul class="navbar-nav">
  
       <li class="nav-item active">
-        <button type="button" class="btn auth-button auth-button-log ">Log In</button>
+
+        <router-link :to="{name: 'SignUp'}">Log In</router-link>
+
+        <button type="button" class="btn auth-button auth-button-log p-3 " >   </button>
       </li>
       <li class="nav-item">
-        <button type="button" class="btn auth-button auth-button-sign">Sign Up</button>
+        <button type="button" class="btn  auth-button auth-button-sign p-3" @click = "directSignUp()">Sign Up</button>
       </li>
     </ul>
   </div>
   </div>
+
+  <router-view/>
 
 </nav>
 </template>
@@ -44,18 +59,32 @@ import '../assets/base.css'
   background-color: transparent; 
   border: none; 
   cursor: pointer;
+  text-decoration: none;
+
   
 }
 
 .auth-button-log{
-  color: white;
   background: var(--dark-blue);
+  color: white;
 }
 
 .auth-button-log:hover{
   background-color: var(--light-blue);
+  color: white;
+  text-decoration: none;
 
 
+}
+.auth-button-sign{
+    color: black;
+
+}
+
+.auth-button-sign:hover{
+    background-color: var(--light-blue) ;
+    color: white;
+    text-decoration: none;
 }
 
 
@@ -64,16 +93,14 @@ import '../assets/base.css'
     .auth-button{
         margin-top: 20px;
     }
+
     .auth-button-sign{
         border: 1px solid black; 
-
+        color: black;
     }
 
-    .auth-button-sign:hover{
-        background-color: var(--light-blue) ;
-        color: white;
-    }
 }
+
 
 </style>
 
