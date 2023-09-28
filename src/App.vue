@@ -4,7 +4,8 @@ import './assets/base.css';
 export default {
   data() {
     return {
-      log_in: true
+      log_in: true,
+      showRegisterForm: false
     };
   },
   
@@ -17,19 +18,18 @@ export default {
       // Check if the current route path is '/sign-up'
       return this.$route.path == '/signup';
     },
-    showLogIn(){
-      console.log(this.log_in );
-      return this.log_in
 
-    }
   }, 
   methods: {
     setRegister() {
-      this.log_in = false ;
+      this.showRegisterForm = true ;
     },
     setLogIn() {
-      this.log_in = true;
+      this.showRegisterForm = false;
     },
+    toggleRegisterForm() {
+      this.showRegisterForm = !this.showRegisterForm;
+    }
 
   }
 };
@@ -54,17 +54,15 @@ export default {
       
         <button type="button" class="btn auth-button auth-button-log p-3 " @click = 'setLogIn' data-toggle="modal" data-target="#LogInModal" > Log In</button></li>
       <li class="nav-item">
-        <button type="button" class="btn auth-button auth-button-sign p-3 " data-toggle="modal" data-target="#SignUpModal"> Sign Up</button>
+        <button type="button" class="btn auth-button auth-button-sign p-3 " @click = 'setRegister' data-toggle="modal" data-target="#LogInModal"> Sign Up</button>
       </li>
 
     </ul>
   </div>
   </div>
 
-
-
 <!-- Modal -->
-<div class="modal fade  bd-example-modal-lg" id="LogInModal" tabindex="-1" role="dialog" aria-labelledby="LogInModal" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="LogInModal" tabindex="-1" role="dialog" aria-labelledby="LogInModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -74,15 +72,18 @@ export default {
         </button>
       </div>
       <div class="modal-body p-4">
-
-        <div class = 'text-center'>  
-          <h2 >Welcome to Project Z</h2>
-          <h5>Ready to embark on exciting journey of projects!</h5>
+        <div class="text-center">
+          <h2>Welcome to Project Z</h2>
+          <h5>Ready to embark on an exciting journey of projects!</h5>
         </div>
 
-        <form class = 'mt-3' v-if ='showLogIn'>
-            <!-- Email input -->
-            <div class="form-outline mb-4">
+        <!-- Parent div for both forms -->
+        <div>
+          <!-- LOGIN input -->
+          <form class="mt-3" v-if="!showRegisterForm">
+            <!-- ... Login form elements ... -->
+              <!-- Email input -->
+              <div class="form-outline mb-4">
               <label class="form-label" for="form2Example1">Email address</label>
               <input type="email" id="form2Example1" class="form-control" />
     
@@ -121,7 +122,7 @@ export default {
             <div class="text-center">
               <p>Not a member?  
               
-                <button class = 'btn btn-default btn-small ' @click = 'setRegister'><a href="">Register</a></button></p>
+                <button class = 'btn btn-default btn-small ' @click = 'toggleRegisterForm'>Register</button></p>
               <p>or sign up with:</p>
               <button type="button" class="btn btn-link btn-floating mx-1">
                 <i class="fab fa-facebook-f"></i>
@@ -139,77 +140,77 @@ export default {
                 <i class="fab fa-github"></i>
               </button>
             </div>
-      </form>
+          </form>
+
+          <!-- REGISTER input -->
+          <form class="mt-3" v-else>
+                  <!-- ... Registration form elements ... -->
+                          <!-- Name input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="registerName">Name</label>
+              <input type="text" id="registerName" class="form-control" />
+
+            </div>
+
+            <!-- Username input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="registerUsername">Username</label>
+              <input type="text" id="registerUsername" class="form-control" />
+            
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="registerEmail">Email</label>
+              <input type="email" id="registerEmail" class="form-control" />
+
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="registerPassword">Password</label>
+              <input type="password" id="registerPassword" class="form-control" />
+            
+            </div>
+
+            <!-- Repeat Password input -->
+            <div class="form-outline mb-4">
+              <label class="form-label" for="registerRepeatPassword">Repeat password</label>
+              <input type="password" id="registerRepeatPassword" class="form-control" />
+
+            </div>
 
 
+                  <!-- Submit button -->
+            <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
+            <div class = 'text-center'>
+              <p>or sign up with:</p>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-facebook-f"></i>
+                    </button>
 
-  <!-- REGISTER input -->
-      <form class = 'mt-3' v-if ='!showLogIn'>
-             <!-- Name input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerName">Name</label>
-        <input type="text" id="registerName" class="form-control" />
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-google"></i>
+                    </button>
 
-      </div>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-twitter"></i>
+                    </button>
 
-      <!-- Username input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerUsername">Username</label>
-        <input type="text" id="registerUsername" class="form-control" />
-       
-      </div>
-
-      <!-- Email input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerEmail">Email</label>
-        <input type="email" id="registerEmail" class="form-control" />
-
-      </div>
-
-      <!-- Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerPassword">Password</label>
-        <input type="password" id="registerPassword" class="form-control" />
-      
-      </div>
-
-      <!-- Repeat Password input -->
-      <div class="form-outline mb-4">
-        <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-        <input type="password" id="registerRepeatPassword" class="form-control" />
-
-      </div>
-
-
-            <!-- Submit button -->
-      <button type="button" class="btn btn-primary btn-block mb-4">Register</button>
-      <div class = 'text-center'>
-      <p>or sign up with:</p>
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
-            </button>
-
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-google"></i>
-            </button>
-
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
-            </button>
-
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-github"></i>
-            </button>
-      </div>
-  
-
-      </form>
-      
-      </div>
+                    <button type="button" class="btn btn-link btn-floating mx-1">
+                      <i class="fab fa-github"></i>
+                    </button>
+              </div>
    
+          </form>
+        </div>
+        
+      </div>
     </div>
   </div>
 </div>
+
+
 
 </nav>
 
