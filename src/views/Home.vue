@@ -61,52 +61,74 @@
 </section>
 
 <div class = 'project search-project' >
-  <div class="container">
-  <div class="row vertical-center">
-    <div class="col-sm">
-      <h1>Search for a project</h1>
-      <h4 class = 'mt-2'>What do you want to be a part of?</h4>
-      <button class = 'btn explore-btn mt-4 px-4 py-2'><h5>Explore</h5></button>
-    </div>
-    <div class="col-sm">
-      <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
- 
-    </div>
-  </div>
-</div>
-
-
-
-</div>
-
-<div class = 'project message-project'>
-  <div class="container">
     <div class="row vertical-center">
       <div class="col-sm">
-        <h1>Message</h1>
-        <h4 class = 'mt-3'>Connect with the project creator and offer your help.</h4>
+        <h1>Search for a project</h1>
+        <h4 class = 'mt-2'>What do you want to be a part of?</h4>
+        <button class = 'btn explore-btn mt-4 px-4 py-2'><h5>Explore</h5></button>
       </div>
       <div class="col-sm">
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+        <div class="input-group rounded">
+          <input
+              type="search"
+              class="form-control rounded input-search"
+              placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
+            />
+          <span class="input-group-text border-0" id="search-addon">
+            <font-awesome-icon icon="fa-solid fa-magnifying-glass"/>
+          </span>
+        </div>
   
       </div>
     </div>
   </div>
 
+<div class = 'project message-project'>
+    <div class="row vertical-center ">
+      <div class="col-md-6 col-sm-12">
+
+        <div>
+          <h1>Message</h1>
+          <h4 class = 'mt-3'>Connect with the project creator and offer your help.</h4>
+        </div>
+
+      </div>
+      <div class="col-md-6 col-sm-12 d-flex flex-column ">
+        <div>
+          <div class="panel d-flex">
+            <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em; background-color: black; color: white; padding: 15px; border-radius: 50%;" />
+            <img src="../assets/rec_message.svg" alt="" style="width: 60%;">
+        
+          </div>
+          <div class="panel d-flex justify-content-end" v-bind:style="{ 'margin-top': '20%' }">
+          
+            <img src="../assets/rec_message2.svg" alt="" style="width: 60%;">
+            <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em; background-color: black; color: white; padding: 15px; border-radius: 50%;" />
+        
+          </div>
+
+        </div>
+
+  
+      </div>
+    </div>
+
+
 </div>
 <div class = 'project embark-project'>
-  <div class="container">
     <div class="row vertical-center">
       <div class="col-md-6">
         <h1>Embark on the new journey</h1>
         <h4 class = 'mt-3'>Join with them and together build something that matters.</h4>
       </div>
       <div class="col-md-6">
-        <font-awesome-icon :icon="['fas', 'magnifying-glass']" />
+        <img src="../assets/path.svg" alt="">
   
       </div>
     </div>
-  </div>
+
 
 
 
