@@ -1,4 +1,5 @@
 <script>
+
 export default {
     data() {
         return {
@@ -6,14 +7,20 @@ export default {
 
         };
     },
-    
-    computed: {
 
+    computed: {
+        isMobileSize() {
+            console.log(window.innerWidth)
+            return window.innerWidth < 768; // Change the value to the tablet screen width you want to target
+        },
 
     }, 
     methods: {
         toggleDisplay() {
             this.display = !this.display;
+        },
+        directToCreate(){
+            this.$router.push({name: 'CreateProject'})
         }
     
     },
@@ -26,45 +33,123 @@ export default {
 
 <template>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
+    <div class = 'top-section' >
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse  align-content-between justify-content-center" id="navbarSupportedContent">
-    <ul class="navbar-nav  ">
-      <li class="nav-item active">
-        <form class="d-flex input-group w-auto">
-            <input
-                type="search"
-                class="form-control rounded"
-                placeholder="Search"
-                aria-label="Search"
-                aria-describedby="search-addon"
-            />
-            <span class="input-group-text border-0" id="search-addon">
-                <font-awesome-icon icon="fa-solid fa-magnifying-glass"/>
-            </span>
+        <nav class=" navbar navbar-expand-lg d-flex justify-content-between">
+        <a class="navbar-brand" href="#" style = "color: black; font-size: 35px; font-weight: bold;">Project Z</a>
+
+        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse  align-content-between justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav  ">
+            <li class="nav-item active">
+                <form class="d-flex input-group w-auto">
+                    <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                    />
+                    <span class="input-group-text border-0" id="search-addon">
+                        <font-awesome-icon icon="fa-solid fa-magnifying-glass"/>
+                    </span>
+                </form>
+            </li>
+            </ul>
+        
+
+        </div> -->
+
+        <form novalidate class="d-flex input-group w-50 px-2" v-if="!isMobileSize" style = " border-radius: 5px; background-color: #F6F6F6 ;">
+                    <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                        style = 'height: auto; outline: none; border:none; background-color: #F6F6F6 ;'
+                    />
+                    <span class="text border-0 d-flex align-items-center" id="search-addon">
+                        <button type = 'button' class = 'btn'>   <font-awesome-icon icon="fa-solid fa-magnifying-glass"/></button>
+                    </span>
         </form>
-      </li>
-    </ul>
- 
 
-  </div>
-  <div class = 'd-flex flex-row' style = 'gap: 10px'>
-        <button class = 'btn btn-primary'>Create Project</button>
-        <div class = 'user'>
-            <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em; background-color: black; color: white; padding: 15px; border-radius: 50%;" />
+
+        <div class = 'd-flex flex-row justify-content-center align-items-center ' style = 'gap: 10px' v-if="!isMobileSize">
+                <button class = 'btn create-btn' @click="directToCreate">Create Project</button>
+                <div class = 'user'>
+                    <button type = 'button' class = 'btn'>      <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em;  padding: 15px; border-radius: 50%;" class = 'icon-user'/></button>
+                
+                </div>
         </div>
+
+
+
+
+
+        </nav>
+
+            <div class="d-flex justify-content-center" v-if="isMobileSize">
+                <form class="input-group w-75">
+                    <input
+                        type="search"
+                        class="form-control rounded"
+                        placeholder="Search"
+                        aria-label="Search"
+                        aria-describedby="search-addon"
+                    />
+                    <span class="input-group-text border-0" id="search-addon">
+
+                        <button type = 'button'>   <font-awesome-icon icon="fa-solid fa-magnifying-glass"/></button>
+                    
+                    </span>
+                </form>
+            </div>
+
+
+
+
     </div>
-</nav>
+
 
 
 </template>
 
 
 <style >
+
+.icon-user{
+    background-color: var(--primary-color);
+    color: var(--hover-text-color)
+}
+.icon-user:hover{
+    background-color: var(--secondary-color);
+}
+
+.navbar{
+  padding: 0;
+}
+
+
+.create-btn{
+    color: var(--hover-text-color);
+    background-color: var(--primary-color);
+    font-weight: bold;
+
+
+
+}
+
+.create-btn:hover{
+    color: var(--hover-text-color);
+    background-color: var(--secondary-color);
+
+}
+
+
 
 </style>

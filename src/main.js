@@ -15,10 +15,10 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faUserSecret, faMagnifyingGlass,faUser} from '@fortawesome/free-solid-svg-icons'
+import { faUserSecret, faMagnifyingGlass,faUser, faBook, faArrowLeft} from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faUserSecret, faMagnifyingGlass, faUser)
+library.add(faUserSecret, faMagnifyingGlass, faUser, faBook, faArrowLeft)
 
 // Create the Vue 3 app instance and mount it to '#app'
 const app = createApp(App);

@@ -29,10 +29,10 @@ export default {
 
 <template>
 
-<body id = "app">
+<body id = "app" class = ''>
 
-  <NavBarHome  v-if="$route.path ==='/'"/>
-  <NavBarDashboard  v-if="$route.path ==='/main'"/> 
+  <NavBarHome  v-if="$route.path ==='/'" class = "padding-left-right"/>
+  <NavBarDashboard  v-if="$route.path ==='/main'" class = "padding-left-right"/> 
 
   <router-view/>
   
@@ -43,7 +43,9 @@ export default {
 
 <style>
 
-
+.padding-left-right{
+    padding:20px 30px 25px;
+}
 
 
 </style>

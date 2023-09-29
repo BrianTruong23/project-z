@@ -1,5 +1,7 @@
 <script>
 
+import '../assets/base.css';
+
 
 export default {
   data() {
@@ -228,8 +230,10 @@ export default {
 <style>
 
 .navbar{
-    padding: 20px 25px 30px;
+  padding: 0;
 }
+
+
 
 .auth-button{
   padding: 5px 10px 5px;

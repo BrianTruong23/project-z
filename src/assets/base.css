@@ -22,6 +22,10 @@
 
   --dark-blue: #12486B;
   --light-blue: #416d89;
+  --primary-color: black;
+  --secondary-color: #333333;
+  --gray: #707070;
+  --hover-text-color: white;
 }
 
 /* semantic color variables for this project */
@@ -59,4 +63,9 @@
   box-sizing: border-box;
   margin: 0;
   font-weight: normal;
+}
+
+
+.padding-left-right{
+  padding: 20px 35px 30px;
 }
