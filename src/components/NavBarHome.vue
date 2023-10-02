@@ -49,7 +49,7 @@ export default {
 
 <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
     <a class="navbar-brand" href="#">
-      <h2>Project Z</h2>
+      <h2 class = 'bolded'>Project Z</h2>
     </a>
 
 
@@ -136,19 +136,19 @@ export default {
                 <button class = 'btn btn-default btn-small ' @click = 'toggleRegisterForm'>Register</button></p>
               <p>or sign up with:</p>
               <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-facebook-f social-btn"></i>
               </button>
 
               <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-google"></i>
+                <i class="fab fa-google social-btn"></i>
               </button>
 
               <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-twitter"></i>
+                <i class="fab fa-twitter social-btn"></i>
               </button>
 
               <button type="button" class="btn btn-link btn-floating mx-1">
-                <i class="fab fa-github"></i>
+                <i class="fab fa-github social-btn"></i>
               </button>
             </div>
           </form>
@@ -197,19 +197,19 @@ export default {
             <div class = 'text-center'>
               <p>or sign up with:</p>
                     <button type="button" class="btn btn-link btn-floating mx-1">
-                      <i class="fab fa-facebook-f"></i>
+                      <i class="fab fa-facebook-f social-btn"></i>
                     </button>
 
                     <button type="button" class="btn btn-link btn-floating mx-1">
-                      <i class="fab fa-google"></i>
+                      <i class="fab fa-google social-btn"></i>
                     </button>
 
                     <button type="button" class="btn btn-link btn-floating mx-1">
-                      <i class="fab fa-twitter"></i>
+                      <i class="fab fa-twitter social-btn"></i>
                     </button>
 
                     <button type="button" class="btn btn-link btn-floating mx-1">
-                      <i class="fab fa-github"></i>
+                      <i class="fab fa-github social-btn"></i>
                     </button>
               </div>
   
@@ -228,6 +228,10 @@ export default {
 </template>
 
 <style>
+
+.social-btn{
+    color: var(--dark-blue);
+}
 
 .navbar{
   padding: 0;
