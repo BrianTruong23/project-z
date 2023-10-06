@@ -8,7 +8,12 @@ export default {
     return {
       log_in: true,
       showRegisterForm: false,
-      showModal: true
+      showModal: true,
+      email: '',     // To store the user's email input
+      password: '',  // To store the user's password input
+      password_confirmation: '',
+      name: ''
+
     };
   },
   
@@ -40,7 +45,32 @@ export default {
       this.showModal = false;
       this.$router.push({name: 'Main'})
     },
+
     ...mapActions(['login', 'logout']), 
+
+   logInUser() {
+      console.log(this.email, this.password);
+      this.login({ email: this.email, password: this.password})
+        .then(() => {
+          // Handle successful login (e.g., redirect to a dashboard)
+          this.showModal = false;
+          this.$router.push({name: 'Main'})
+        })
+        .catch((error) => {
+          // Handle login error (e.g., display an error message)
+          console.error(error);
+        });
+    },
+
+    registerUser(){
+      console.log(this.email, this.password, this.name, this.password_confirmation);
+      // this.registerUser({email: this.email, password: this.password}).then(() =>{
+      //   console.log('Successfuly REGISTER')
+      // })
+      // .catch((error)=> {
+      //   console.error(error);
+      // }) 
+    }
   },
 
 };
@@ -95,19 +125,19 @@ export default {
         <!-- Parent div for both forms -->
         <div>
           <!-- LOGIN input -->
-          <form class="mt-3" v-if="!showRegisterForm" @submit.prevent="submitForm">
+          <form class="mt-3" v-if="!showRegisterForm" @submit.prevent='logInUser'>
             <!-- ... Login form elements ... -->
               <!-- Email input -->
               <div class="form-outline mb-4">
               <label class="form-label" for="form2Example1">Email address</label>
-              <input type="email" id="form2Example1" class="form-control" />
+              <input type="email" id="form2Example1" class="form-control" v-model="email" />
     
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="form2Example2">Password</label>
-              <input type="password" id="form2Example2" class="form-control" />
+              <input type="password" id="form2Example2" class="form-control" v-model="password"/>
 
             </div>
 
@@ -129,7 +159,7 @@ export default {
             </div>
 
             <!-- Submit button -->
-            <button type="submit" class="btn btn-block mb-4 auth-button-log" data-dismiss="modal" data-backdrop = "false" @click="hideModal" >Log in</button>
+            <button type="submit" class="btn btn-block mb-4 auth-button-log" data-dismiss="modal" data-backdrop = "false" @click="logInUser" >Log in</button>
 
             <!-- Register buttons -->
             <div class="text-center">
@@ -161,41 +191,35 @@ export default {
                           <!-- Name input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="registerName">Name</label>
-              <input type="text" id="registerName" class="form-control" />
+              <input type="text" id="registerName" class="form-control" v-model="name" />
 
             </div>
 
-            <!-- Username input -->
-            <div class="form-outline mb-4">
-              <label class="form-label" for="registerUsername">Username</label>
-              <input type="text" id="registerUsername" class="form-control" />
-            
-            </div>
 
             <!-- Email input -->
             <div class="form-outline mb-4">
-              <label class="form-label" for="registerEmail">Email</label>
-              <input type="email" id="registerEmail" class="form-control" />
+              <label class="form-label" for="registerEmail" >Email</label>
+              <input type="email" id="registerEmail" class="form-control" v-model="email" />
 
             </div>
 
             <!-- Password input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="registerPassword">Password</label>
-              <input type="password" id="registerPassword" class="form-control" />
+              <input type="password" id="registerPassword" class="form-control" v-model="password"/>
             
             </div>
 
             <!-- Repeat Password input -->
             <div class="form-outline mb-4">
               <label class="form-label" for="registerRepeatPassword">Repeat password</label>
-              <input type="password" id="registerRepeatPassword" class="form-control" />
+              <input type="password" id="registerRepeatPassword" class="form-control" v-model="password_confirmation"/>
 
             </div>
 
 
                   <!-- Submit button -->
-            <button type="button" class="btn btn-block mb-4 auth-button-log" >Register</button>
+            <button type="button" class="btn btn-block mb-4 auth-button-log" @click="registerUser" >Register</button>
             <div class = 'text-center'>
               <p>or sign up with:</p>
                     <button type="button" class="btn btn-link btn-floating mx-1">

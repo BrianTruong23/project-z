@@ -1,4 +1,5 @@
 <script>
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     data() {
@@ -21,7 +22,22 @@ export default {
         },
         directToCreate(){
             this.$router.push({name: 'CreateProject'})
-        }
+        },
+
+        ...mapActions(['login', 'logout']), 
+
+        logOutUser() {
+            this.logout()
+            
+            .then(() => {
+                // Handle successful logout (e.g., redirect to the home page)
+                this.$router.push({ name: 'Home' });
+            })
+            .catch((error) => {
+                // Handle logout error (e.g., display an error message)
+                console.error(error);
+            });
+        },
     
     },
     components: {
@@ -81,6 +97,7 @@ export default {
 
         <div class = 'd-flex flex-row justify-content-center align-items-center ' style = 'gap: 10px' v-if="!isMobileSize">
                 <button class = 'btn create-btn' @click="directToCreate">Create Project</button>
+                <button class = 'btn create-btn' @click="logOutUser">Log Out</button>
                 <div class = 'user'>
                     <button type = 'button' class = 'btn'>      <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em;  padding: 15px; border-radius: 50%;" class = 'icon-user'/></button>
                 
