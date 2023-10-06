@@ -10,6 +10,24 @@
 // };
 
 
+export default {
+  data(){
+
+  },
+
+  computed: {
+
+    showDesktopTablet: function(){
+      return window.innerWidth >= 768;
+    }
+
+  },
+  methods: {
+
+  }
+}
+
+
 </script>
 
 <template>
@@ -44,13 +62,13 @@
     <p>Build an app for healtcare system</p>
   </div>
 
-  <div class = 'project-container'>
+  <div class = 'project-container' v-if="showDesktopTablet">
     <img src="../assets/pin.png" alt="">
     <h4>Coding Project</h4>
     <hr>
     <p>Build an app for healtcare system</p>
   </div>
-  <div class = 'project-container'>
+  <div class = 'project-container' v-if="showDesktopTablet">
     <img src="../assets/pin.png" alt="">
     <h4>Coding Project</h4>
     <hr>
@@ -67,7 +85,7 @@
         <h4 class = 'mt-2'>What do you want to be a part of?</h4>
         <button class = 'btn explore-btn mt-4 px-4 py-2'><h5>Explore</h5></button>
       </div>
-      <div class="col-sm">
+      <div class="col-sm second-column">
         <div class="input-group rounded">
           <input
               type="search"
@@ -95,16 +113,16 @@
         </div>
 
       </div>
-      <div class="col-md-6 col-sm-12 d-flex flex-column ">
+      <div class="col-md-6 col-sm-12 d-flex flex-column second-column">
         <div>
           <div class="panel d-flex">
             <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em; background-color: black; color: white; padding: 15px; border-radius: 50%;" />
-            <img src="../assets/rec_message.svg" alt="" style="width: 60%;">
+            <img src="../assets/rec_message.svg" alt=""  class = 'message-img'>
         
           </div>
           <div class="panel d-flex justify-content-end" v-bind:style="{ 'margin-top': '20%' }">
           
-            <img src="../assets/rec_message2.svg" alt="" style="width: 60%;">
+            <img src="../assets/rec_message2.svg" alt="" class = 'message-img'>
             <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.5em; background-color: black; color: white; padding: 15px; border-radius: 50%;" />
         
           </div>
@@ -123,8 +141,8 @@
         <h1>Embark on the new journey</h1>
         <h4 class = 'mt-3'>Join with them and together build something that matters.</h4>
       </div>
-      <div class="col-md-6">
-        <img src="../assets/path.svg" alt="">
+      <div class="col-md-6 second-column">
+        <img src="../assets/path.svg" alt="" class = 'path-img'>
   
       </div>
     </div>
@@ -137,14 +155,14 @@
 <section id = 'footer'> 
 
   <div class = 'icon-footer'>
-    <h4>Project Z</h4>
+    <h4 class = 'footer-project'>Project Z</h4>
   </div>
   <div class = 'contact'>
-    <h4>Contact Us</h4>
+    <h4 class = 'footer-project'>Contact Us</h4>
     <h5>johndoe@gmail.com</h5>
   </div>
   <div class="social">
-    <h4>Get social</h4>
+    <h4 class = 'footer-project'>Get social</h4>
     <div class = 'social-media-icons'>
       <i class="fab fa-facebook"></i> <!-- Facebook Icon -->
       <i class="fab fa-linkedin"></i> <!-- LinkedIn Icon -->
@@ -159,6 +177,18 @@
 </template>   
 
 <style>
+
+.footer-project{
+  font-weight: bold;
+}
+
+.message-img{
+  max-width: 60%;
+}
+
+.path-img{
+  max-width: 100%;
+}
 
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
@@ -294,6 +324,38 @@ section{
 
 
 
+@media (max-width: 768px) {
 
+  h1{
+    font-size: 30px;
+  }
+
+  h4{
+    font-size: 17px;
+  }
+  h5{
+    font-size: 15px;
+  }
+
+  .message-img{
+    max-width: 100%;
+  }
+
+  .second-column{
+
+    margin-top: 100px;
+
+  }
+
+  .project{
+  padding: 100px 60px 100px;
+  min-height: fit-content;
+
+  }
+
+  .vertical-center{
+    min-height: fit-content;
+  }
+}
 
 </style>

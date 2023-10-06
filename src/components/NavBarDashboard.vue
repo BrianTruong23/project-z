@@ -87,27 +87,33 @@ export default {
                 </div>
         </div>
 
-
-
+        <div v-if="isMobileSize">
+            <div class = 'user'>
+                    <button type = 'button' class = 'btn'>      <font-awesome-icon :icon="['fas', 'user']" style="font-size: 1.3em;  padding: 12px; border-radius: 50%;" class = 'icon-user'/></button>
+                
+            </div>
+        </div>
 
 
         </nav>
 
-            <div class="d-flex justify-content-center" v-if="isMobileSize">
-                <form class="input-group w-75">
+            <div class="d-flex justify-content-left mt-2 flex-column" v-if="isMobileSize">
+
+                <form novalidate class="d-flex input-group w-75 px-2 mt-2 "  style = " border-radius: 5px; background-color: #F6F6F6 ;">
                     <input
                         type="search"
                         class="form-control rounded"
                         placeholder="Search"
                         aria-label="Search"
                         aria-describedby="search-addon"
+                        style = 'height: auto; outline: none; border:none; background-color: #F6F6F6 ;'
                     />
-                    <span class="input-group-text border-0" id="search-addon">
-
-                        <button type = 'button'>   <font-awesome-icon icon="fa-solid fa-magnifying-glass"/></button>
-                    
+                    <span class="text border-0 d-flex align-items-center" id="search-addon">
+                        <button type = 'button' class = 'btn'>   <font-awesome-icon icon="fa-solid fa-magnifying-glass"/></button>
                     </span>
                 </form>
+
+                <button class = 'btn create-btn w-50 mt-4' @click="directToCreate">Create Project</button>
             </div>
 
 
