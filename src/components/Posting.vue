@@ -4,12 +4,29 @@
 
 export default {
     data(){
-
+        return {
+ 
+        }
     },
+
+    props: {
+        project: {},
+    },
+    
 
     methods: {
         directToProject: function(){
             this.$router.push({name: 'project'});
+
+        },
+
+        formatDate(timestamp){
+            const date = new Date(timestamp);
+            const day = date.getDate();
+            const month = date.getMonth() + 1;
+            const year = date.getFullYear();
+            return `${month}/${day}/${year}`;
+        
 
         }
     }
@@ -19,35 +36,32 @@ export default {
 
 <template>
 
-    <div class = "posting d-flex flex-column " >
-        <div class = 'top-div d-flex align-items-center justify-content-between'>
-            <!-- <button type="button" class = 'btn'><img src="../assets/crypto.png" alt=""></button> -->
-            <span class = 'bolded mr-3 categories'>Coding</span>
+    <div class = 'top-div d-flex align-items-center justify-content-between'>
+        <!-- <button type="button" class = 'btn'><img src="../assets/crypto.png" alt=""></button> -->
+        <span class = 'bolded mr-3 categories'>Coding</span>
 
-            <button type="button" class = 'btn save-btn'><font-awesome-icon :icon="['fas', 'book']" /></button>
-
-
-        </div>
-        <div class = 'info'>
-
-            <h2 class = 'mt-3'>Building A Crypto Currency App </h2>
-            <h5 class = 'mt-3' >Team Name</h5>
-            <p class = 'mt-4' >Building A Crypto Currency App: Embark on a digital financial revolution with our cutting-edge cryptocurrency app. Seamlessly navigate the world of decentralized finance, trade cryptocurrencies, monitor real-time market data, and manage your digital assets securely, all in one user-friendly and innovative platform...</p>
-
-            <p> <span class = 'bolded'>Skill Required:</span> Beginner Level</p>
-            <p> <span class = 'bolded'>Location Type:</span> Remote</p>
-            <p> <span class = 'bolded'>Date Posted:</span>  20/7/2023</p>
-           
-            <div class = 'button-group d-flex mt-4'>
-                <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject"> Learn more</button>
-                <button type = 'button'  class = 'btn apply-btn btn-posting'> Apply </button>
-            </div>
-      
-
-        </div>
+        <button type="button" class = 'btn save-btn'><font-awesome-icon :icon="['fas', 'book']" /></button>
 
 
     </div>
+    <div class = 'info'>
+        <h2>{{ project.name }}</h2>
+        <h5 class = 'mt-3' >Team Name</h5>
+        <p class = 'mt-4' >{{project.description}}</p>
+
+        <p> <span class = 'bolded'>Skill Required:</span> {{project.skill_required.toUpperCase()}}</p>
+        <p> <span class = 'bolded'>Location Type:</span> {{project.location.toUpperCase()}}</p>
+        <p> <span class = 'bolded'>Date Posted:</span>  {{formatDate(project.created_at)}}</p>
+        
+        <div class = 'button-group d-flex mt-4'>
+            <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject"> Learn more</button>
+            <button type = 'button'  class = 'btn apply-btn btn-posting'> Apply </button>
+        </div>
+    
+
+    </div>
+
+
 
     
 </template>

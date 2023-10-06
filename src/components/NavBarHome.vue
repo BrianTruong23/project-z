@@ -1,7 +1,7 @@
 <script>
 
 import '../assets/base.css';
-
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -19,8 +19,10 @@ export default {
     },
     showHome() {
       // Check if the current route path is '/sign-up'
-      return this.$route.path == '/signup';
+      return this.$route.path === '/signup';
     },
+    ...mapGetters(['isAuthenticated'])
+
 
   }, 
   methods: {
@@ -37,8 +39,8 @@ export default {
     hideModal() {
       this.showModal = false;
       this.$router.push({name: 'Main'})
-    }
-
+    },
+    ...mapActions(['login', 'logout']), 
   },
 
 };
