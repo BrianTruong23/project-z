@@ -70,8 +70,8 @@ export default {
         <p class = 'mt-4' >{{project.description}}</p>
 
         <p> <span class = 'bolded'>Skill Required:</span> {{project.skill_required.toUpperCase()}}</p>
-        <p> <span class = 'bolded'>Location Type:</span> {{project.remote}}</p>
-        <p> <span class = 'bolded'>Location Type:</span> {{project.remote}}</p>
+        <p> <span class = 'bolded' >Remote:</span> <span v-if="project.remote">Yes</span> <span v-else> No</span></p>
+        <p> <span class = 'bolded'>Location:</span> {{project.city}}, {{project.state}}, {{project.zip}}</p>
         <p> <span class = 'bolded'>Date Posted:</span>  {{formatDate(project.created_at)}}</p>
         
         <div class = 'button-group d-flex mt-4'>

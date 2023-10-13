@@ -55,30 +55,6 @@ export default {
         <nav class=" navbar navbar-expand-lg d-flex justify-content-between">
         <a class="navbar-brand" href="#" style = "color: black; font-size: 35px; font-weight: bold;">Project Z</a>
 
-        <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse  align-content-between justify-content-center" id="navbarSupportedContent">
-            <ul class="navbar-nav  ">
-            <li class="nav-item active">
-                <form class="d-flex input-group w-auto">
-                    <input
-                        type="search"
-                        class="form-control rounded"
-                        placeholder="Search"
-                        aria-label="Search"
-                        aria-describedby="search-addon"
-                    />
-                    <span class="input-group-text border-0" id="search-addon">
-                        <font-awesome-icon icon="fa-solid fa-magnifying-glass"/>
-                    </span>
-                </form>
-            </li>
-            </ul>
-        
-
-        </div> -->
 
         <form novalidate class="d-flex input-group w-50 px-2" v-if="!isMobileSize" style = " border-radius: 5px; background-color: #F6F6F6 ;">
                     <input
