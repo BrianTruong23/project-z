@@ -39,8 +39,9 @@ export default {
             // Handle successful delete (e.g., show a success message)
             console.log("Project deleted successfully.");
 
-            // Now, reload the page
-            // window.location.reload();
+            // Now, reload the page or delete the project in the store of Vue 
+            this.$router.push({ name: 'Main', query: { refresh: Date.now() } });
+         
             })
             .catch((error) => {
             // Handle delete error (e.g., display an error message)

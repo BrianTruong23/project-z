@@ -43,7 +43,7 @@ export default {
                 name:this.projectName, description: this.projectDescription, skill_required: this.skillRequired, city: this.city, state_us: this.state, zip: this.zip, remote: this.remote
             }).then(() =>{
                 console.log("CREATED SUCCESS")
-                // this.$router.push({name: 'Main'})
+                this.$router.push({name: 'Main'})
             }).catch((error) =>{
                 console.error(error);
             })

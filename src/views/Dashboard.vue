@@ -21,7 +21,7 @@ export default{
         },
         ...mapGetters(['isAuthenticated'])
     },
-    created() {
+    mounted() {
         this.$store.dispatch('loadProjects');  
     },
 
