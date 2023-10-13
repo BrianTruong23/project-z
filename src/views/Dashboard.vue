@@ -26,8 +26,10 @@ export default{
     },
 
     methods: {
-        ...mapActions(['login', 'logout']), 
-    }
+        ...mapActions(['delete']), 
+    },
+
+
 }
 
  
@@ -37,7 +39,8 @@ export default{
 
 <template>
 
-<div v-if="isAuthenticated">
+<!-- <div v-if="isAuthenticated"> -->
+<div>
     <div class = 'padding-left-right'>
         <div class = 'mt-3'>
             <div>
@@ -64,7 +67,7 @@ export default{
     </div>
 </div>
 
-<p class= 'log-in-needed mt-5 bolded' v-else>Please log in to access this feature. </p>
+<!-- <p class= 'log-in-needed mt-5 bolded' v-else>Please log in to access this feature. </p> -->
 
 
 

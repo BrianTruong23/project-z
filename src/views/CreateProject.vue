@@ -2,12 +2,14 @@
 <script>
 
 import StatesUS from '../components/states.json'
+import countryList from '../components/country.js'
 
 export default {
     data(){
 
         return{
             stateJSON: StatesUS,
+            countryList: countryList,
         }
 
     },
@@ -65,15 +67,6 @@ export default {
         </div>
 
 
-        <div class="form-group mt-3">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
-
-        <div class="form-group">
-            <label for="inputAddress2" class="form-label">Address 2</label>
-            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-        </div>
 
         <div class="form-group">
                 <label for="inputCity" class="form-label">City</label>
@@ -87,10 +80,19 @@ export default {
             </select>
         </div>
 
+        <div class="form-group">
+            <label for="inputState" class="form-label mr-3">Country</label>
+            <select id="inputState" class="form-select">
+                <option selected>Choose Country</option>
+                <option v-for="country in countryList" :key="country">{{ country }}</option>
+            </select>
+        </div>
+
+
 
         <div class="form-group">
                 <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+                <input type="text" class="form-control zip-code" id="inputZip" >
         </div>
 
         <div class="form-group">
@@ -117,5 +119,6 @@ export default {
 </template>
 
 <style>
+
 
 </style>

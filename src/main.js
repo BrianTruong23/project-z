@@ -9,6 +9,7 @@ import App from './App.vue'
 import router from './router/index.js'; // Import your router configuration
 import axios from 'axios';
 import store from "../store/index";
+
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 

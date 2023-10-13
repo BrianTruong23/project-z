@@ -19,7 +19,7 @@ export default {
   },
   methods:{
     ...mapActions(['login','logout'])
-  }
+  },
 };
 
 </script>
@@ -35,7 +35,8 @@ export default {
   </div> -->
 
   <NavBarHome  v-if="$route.path ==='/'" class = "padding-left-right"/>
-  <NavBarDashboard  v-if="$route.path ==='/main' & isAuthenticated" class = "padding-left-right"/> 
+  <!-- <NavBarDashboard  v-if="$route.path ==='/main' & isAuthenticated" class = "padding-left-right"/>  -->
+  <NavBarDashboard  v-if="$route.path ==='/main' " class = "padding-left-right"/> 
 
   <router-view/>
   

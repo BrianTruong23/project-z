@@ -1,6 +1,7 @@
 <script>
 
 
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     data(){
@@ -28,8 +29,27 @@ export default {
             return `${month}/${day}/${year}`;
         
 
+        },
+        ...mapActions(['delete']), 
+        deleteProject(id) {
+
+            console.log('Log from delete Project', id)
+            
+            this.delete(id).then(() => {
+            // Handle successful delete (e.g., show a success message)
+            console.log("Project deleted successfully.");
+
+            // Now, reload the page
+            // window.location.reload();
+            })
+            .catch((error) => {
+            // Handle delete error (e.g., display an error message)
+            console.error(error);
+            });
         }
+
     }
+
 }
 
 </script>
@@ -50,12 +70,14 @@ export default {
         <p class = 'mt-4' >{{project.description}}</p>
 
         <p> <span class = 'bolded'>Skill Required:</span> {{project.skill_required.toUpperCase()}}</p>
-        <p> <span class = 'bolded'>Location Type:</span> {{project.location.toUpperCase()}}</p>
+        <p> <span class = 'bolded'>Location Type:</span> {{project.remote}}</p>
+        <p> <span class = 'bolded'>Location Type:</span> {{project.remote}}</p>
         <p> <span class = 'bolded'>Date Posted:</span>  {{formatDate(project.created_at)}}</p>
         
         <div class = 'button-group d-flex mt-4'>
             <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject"> Learn more</button>
             <button type = 'button'  class = 'btn apply-btn btn-posting'> Apply </button>
+            <button type = 'button'  class = 'btn apply-btn btn-delete' @click = "deleteProject(project.id)"> Delete </button>
         </div>
     
 
@@ -123,6 +145,10 @@ export default {
     gap: 10px;
     align-content: center;
     justify-content: flex-end;
+}
+
+.btn-delete{
+    background-color: red;
 }
 
 
