@@ -19,7 +19,7 @@ export default{
         projects() {
             return this.$store.getters.projects;
         },
-        ...mapGetters(['isAuthenticated'])
+        ...mapGetters(['isLoggedIn'])
     },
     mounted() {
         this.$store.dispatch('loadProjects');  

@@ -4,19 +4,24 @@ import axios from 'axios';
 export default createStore({
   state: {
     projects: [],
-    isAuthenticated: false,
     token: '',
+    isLoggedIn: !!localStorage.getItem('token'),
   },
 
   getters: {
     projects: (state) => {
       return state.projects;
     },
-    isAuthenticated: (state) =>{
-        return state.isAuthenticated;
-    },
     token: (state) =>{
-      return state.token;
+      if (state.isLoggedIn){
+        state.token = localStorage.getItem('token');
+        return state.token;
+      }else{
+        return state.token;
+      }
+    },
+    isLoggedIn: (state) =>{
+      return state.isLoggedIn;
     }
   },
 
@@ -25,18 +30,24 @@ export default createStore({
       state.projects = projects;
 
     },
-
     SET_AUTH(state, isAuthenticated){
         state.isAuthenticated = isAuthenticated
     },
     SET_AUTH_TOKEN(state, token){
       state.token = token;
+    },
+    LOGIN_SUCCESS (state) {
+      state.isLoggedIn = true;
+      state.pending = false;
+    },
+    LOGOUT(state) {
+      state.isLoggedIn = false;
     }
   },
 
   actions: {
-    async loadProjects({ commit, state}) {
-      console.log('token in load Projects', state.token);
+    async loadProjects({ commit, state, getters}) {
+      console.log('token in load Projects', getters.token);
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/projects/');
         commit('SET_ITEMS', response.data);
@@ -56,9 +67,11 @@ export default createStore({
      
           const token = response.data.token;
           // If login is successful, update isAuthenticated to true
-          commit('SET_AUTH', true);
-
           commit('SET_AUTH_TOKEN', token);
+
+          commit('LOGIN_SUCCESS');
+
+          localStorage.setItem("token", token);
 
           console.log('token in login', state.token);
   
@@ -89,7 +102,11 @@ export default createStore({
 
           });
           console.log(response);
+
           commit('SET_AUTH', false);
+          localStorage.removeItem("token");
+
+          commit('LOGOUT');
 
       }catch(error){
           console.error(error)

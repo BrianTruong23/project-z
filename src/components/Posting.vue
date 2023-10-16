@@ -40,7 +40,7 @@ export default {
             console.log("Project deleted successfully.");
 
             // Now, reload the page or delete the project in the store of Vue 
-            this.$router.push({ name: 'Main', query: { refresh: Date.now() } });
+            location.reload()
          
             })
             .catch((error) => {

@@ -15,7 +15,7 @@ export default {
     NavBarDashboard
   },
   computed: {
-    ...mapGetters(['isAuthenticated']),
+    ...mapGetters(['isLoggedIn']),
   },
   methods:{
     ...mapActions(['login','logout'])

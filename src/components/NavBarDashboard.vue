@@ -24,6 +24,10 @@ export default {
             this.$router.push({name: 'CreateProject'})
         },
 
+        directToHome(){
+            this.$router.push({ name: 'Home' });
+        },
+
         ...mapActions(['login', 'logout']), 
 
         logOutUser() {
@@ -53,8 +57,8 @@ export default {
 
 
         <nav class=" navbar navbar-expand-lg d-flex justify-content-between">
-        <a class="navbar-brand" href="#" style = "color: black; font-size: 35px; font-weight: bold;">Project Z</a>
-
+        <button class=" btn navbar-brand" href="#" style = "color: black; font-size: 35px; font-weight: bold;" @click = "directToHome"> Project Z</button>  
+     
 
         <form novalidate class="d-flex input-group w-50 px-2" v-if="!isMobileSize" style = " border-radius: 5px; background-color: #F6F6F6 ;">
                     <input
