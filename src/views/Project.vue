@@ -1,28 +1,53 @@
 
 <script>
-
+import { mapGetters, mapActions } from 'vuex';
 import NavBarDashboard  from '../components/NavBarDashboard.vue';
 
 export default {
     data(){
 
-        
-
+        return{
+            projectId: this.$route.params.projectId,
+            requested_project: null,
+        }
+     
     },
 
     components: {
         NavBarDashboard
     },
+    computed:{
+        ...mapGetters(['projects']),
+
+    },
     methods: {
         backToMain: function(){
-            this.$router.go(-1)
+            this.$router.push({name: 'Main'});
+        },
+        ...mapActions(['searchProject']),
+        get_requested_projects: function() {
+            for (const element in this.projects){
+                const project = this.projects[element]
+                if (project['id'] == this.projectId){
+                    this.requested_project = project
+                }
+            }
+
         }
+    },
+ 
+    mounted(){
+        this.$store.dispatch('loadProjects');  
+        this.get_requested_projects();
     }
     
 }
 
 </script>
 <template>
+   
+   {{ this.requested_project }}
+   {{ this.requested_project["name"] }}
 
     <div class = 'project-view padding-left-right'>
 
@@ -31,7 +56,7 @@ export default {
     </button>
     
     <h1 class = 'text-center bolded'>
-        Building A Crypto Currency App 
+        {{ this.requested_project["name"] }}
     </h1>
 
     <h5 class = 'mt-3'>
@@ -39,9 +64,11 @@ export default {
     </h5>
 
     <div class=  'general-description mt-3'>
-        <p> <span class = 'bolded'>Skill Required:</span> Beginner Level</p>
+        <!-- {{ this.requested_project["skill_required"]}}
+        {{ this.requested_project["created_at"]}} -->
+        <p> <span class = 'bolded'>Skill Required:</span>  </p>
         <p> <span class = 'bolded'>Location Type:</span> Remote</p>
-        <p> <span class = 'bolded'>Date Posted:</span>  20/7/2023</p>
+        <p> <span class = 'bolded'>Date Posted:</span>  </p>
     </div>
 
     <p class = 'description'>

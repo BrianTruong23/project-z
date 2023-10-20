@@ -28,7 +28,7 @@ const routes = [
     component: CreateProject
   },
   {
-    path: '/project',
+    path: '/project/:projectId',
     name: 'project',
     component: Project
   }

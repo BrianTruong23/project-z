@@ -167,10 +167,29 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
+    },
+
+    async searchProject(id){
+
+      const url = `http://127.0.0.1:8000/api/projects/show/${id}`;
+  
+      try{
+          const response = await axios.get(url)
+  
+          console.log(response)
+
+          return response.data
+      }catch(error){
+  
+        console.log(error)
+      }
+  
     }
     
       
   },
+
+
    
 
 });

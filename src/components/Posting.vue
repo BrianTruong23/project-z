@@ -16,8 +16,8 @@ export default {
     
 
     methods: {
-        directToProject: function(){
-            this.$router.push({name: 'project'});
+        directToProject: function(projectId){
+            this.$router.push({name: 'project',  params: { projectId }});
 
         },
 
@@ -76,7 +76,8 @@ export default {
         <p> <span class = 'bolded'>Date Posted:</span>  {{formatDate(project.created_at)}}</p>
         
         <div class = 'button-group d-flex mt-4'>
-            <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject"> Learn more</button>
+            <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject(project.id)"> Edit</button>
+            <button type = 'button' class = 'btn learn-btn btn-posting' @click="directToProject(project.id)"> Learn more</button>
             <button type = 'button'  class = 'btn apply-btn btn-posting'> Apply </button>
             <button type = 'button'  class = 'btn apply-btn btn-delete' @click = "deleteProject(project.id)"> Delete </button>
         </div>
