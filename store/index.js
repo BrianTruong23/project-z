@@ -6,11 +6,15 @@ export default createStore({
     projects: [],
     token: '',
     isLoggedIn: !!localStorage.getItem('token'),
+    requested_project: {},
   },
 
   getters: {
     projects: (state) => {
       return state.projects;
+    },
+    requested_project: (state) =>{
+      return state.requested_project;
     },
     token: (state) =>{
       if (state.isLoggedIn){
@@ -42,6 +46,9 @@ export default createStore({
     },
     LOGOUT(state) {
       state.isLoggedIn = false;
+    },
+    SET_REQUESTED_PROJECTS(state, requested_project){
+      state.requested_project = requested_project
     }
   },
 
@@ -169,21 +176,26 @@ export default createStore({
       }
     },
 
-    async searchProject(id){
+    async searchProject({commit, getters}, id) {
 
       const url = `http://127.0.0.1:8000/api/projects/show/${id}`;
-  
-      try{
-          const response = await axios.get(url)
-  
-          console.log(response)
+    
+      try {
+        const response = await axios.get(url);
+        if (response.status === 200) {
+          commit('SET_REQUESTED_PROJECTS', response.data);
 
-          return response.data
-      }catch(error){
-  
-        console.log(error)
+          console.log('index.js', getters.requested_project)
+        } else {
+          // Handle unexpected response status codes (e.g., 404, 500, etc.)
+          console.error(`Unexpected response status: ${response.status}`);
+          return null; // or throw an error
+        }
+      } catch (error) {
+        // Handle network errors or other issues
+        console.error('An error occurred:', error);
+        return null; // or throw an error
       }
-  
     }
     
       

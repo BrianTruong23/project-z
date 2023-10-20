@@ -8,7 +8,6 @@ export default {
 
         return{
             projectId: this.$route.params.projectId,
-            requested_project: null,
         }
      
     },
@@ -17,37 +16,26 @@ export default {
         NavBarDashboard
     },
     computed:{
-        ...mapGetters(['projects']),
+        ...mapGetters(['projects', 'requested_project']),
 
     },
     methods: {
         backToMain: function(){
             this.$router.push({name: 'Main'});
         },
-        ...mapActions(['searchProject']),
-        get_requested_projects: function() {
-            for (const element in this.projects){
-                const project = this.projects[element]
-                if (project['id'] == this.projectId){
-                    this.requested_project = project
-                }
-            }
+        ...mapActions([]),
 
-        }
     },
  
-    mounted(){
-        this.$store.dispatch('loadProjects');  
-        this.get_requested_projects();
-    }
+    async mounted() {
+        await this.$store.dispatch('searchProject', this.projectId);
+
+    },
     
 }
 
 </script>
 <template>
-   
-   {{ this.requested_project }}
-   {{ this.requested_project["name"] }}
 
     <div class = 'project-view padding-left-right'>
 
@@ -56,7 +44,7 @@ export default {
     </button>
     
     <h1 class = 'text-center bolded'>
-        {{ this.requested_project["name"] }}
+        {{ this.requested_project.name }}
     </h1>
 
     <h5 class = 'mt-3'>
@@ -64,11 +52,10 @@ export default {
     </h5>
 
     <div class=  'general-description mt-3'>
-        <!-- {{ this.requested_project["skill_required"]}}
-        {{ this.requested_project["created_at"]}} -->
-        <p> <span class = 'bolded'>Skill Required:</span>  </p>
+
+        <p> <span class = 'bolded'>Skill Required:</span>  {{ this.requested_project["skill_required"]}}    </p>
         <p> <span class = 'bolded'>Location Type:</span> Remote</p>
-        <p> <span class = 'bolded'>Date Posted:</span>  </p>
+        <p> <span class = 'bolded'>Date Posted:</span>  {{ this.requested_project["created_at"]}} </p>
     </div>
 
     <p class = 'description'>
