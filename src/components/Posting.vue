@@ -21,16 +21,16 @@ export default {
 
         },
 
-        formatDate(timestamp){
-            const date = new Date(timestamp);
-            const day = date.getDate();
-            const month = date.getMonth() + 1;
-            const year = date.getFullYear();
-            return `${month}/${day}/${year}`;
+        // formatDate(timestamp){
+        //     const date = new Date(timestamp);
+        //     const day = date.getDate();
+        //     const month = date.getMonth() + 1;
+        //     const year = date.getFullYear();
+        //     return `${month}/${day}/${year}`;
         
 
-        },
-        ...mapActions(['delete']), 
+        // },
+        ...mapActions(['delete', 'formatDate']), 
         deleteProject(id) {
 
             console.log('Log from delete Project', id)

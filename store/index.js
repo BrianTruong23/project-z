@@ -57,6 +57,8 @@ export default createStore({
       console.log('token in load Projects', getters.token);
       try {
         const response = await axios.get('http://127.0.0.1:8000/api/projects/');
+        
+
         commit('SET_ITEMS', response.data);
       } catch (error) {
         console.log(error);
@@ -196,7 +198,8 @@ export default createStore({
         console.error('An error occurred:', error);
         return null; // or throw an error
       }
-    }
+    },
+
     
       
   },
