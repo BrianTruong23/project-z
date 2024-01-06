@@ -8,9 +8,10 @@ Then Project Z is here for the rescue. It is a hub and a platform for you to pos
 # Demo Pages 
 
 Here are some demo pages of the project 
+![ProjectZ](https://github.com/BrianTruong23/project-z/assets/40693511/4b3171db-9ca3-408d-8609-40f05bd9c447)
 
 ![HomePage](https://github.com/BrianTruong23/project-z/assets/40693511/687cb411-996c-4265-87d9-a2221f828f94)
-![ProjectZ](https://github.com/BrianTruong23/project-z/assets/40693511/4b3171db-9ca3-408d-8609-40f05bd9c447)
+
 
 
 
